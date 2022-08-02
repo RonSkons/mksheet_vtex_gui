@@ -45,11 +45,8 @@
             this.makeVTF = new System.Windows.Forms.Button();
             this.statusLabel = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
+            this.pngToTgaButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // folderBrowserDialog1
-            // 
-            this.folderBrowserDialog1.HelpRequest += new System.EventHandler(this.folderBrowserDialog1_HelpRequest);
             // 
             // button1
             // 
@@ -69,7 +66,6 @@
             this.label1.Size = new System.Drawing.Size(125, 15);
             this.label1.TabIndex = 1;
             this.label1.Text = "Team Fortress 2 folder:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // tf2FolderTextBox
             // 
@@ -87,7 +83,6 @@
             this.label2.Size = new System.Drawing.Size(166, 15);
             this.label2.TabIndex = 3;
             this.label2.Text = "Folder containing TGA frames:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // frameTextBox
             // 
@@ -115,13 +110,12 @@
             this.label3.Size = new System.Drawing.Size(125, 15);
             this.label3.TabIndex = 6;
             this.label3.Text = "Frame filename prefix:";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // prefixTextBox
             // 
             this.prefixTextBox.Location = new System.Drawing.Point(184, 64);
             this.prefixTextBox.Name = "prefixTextBox";
-            this.prefixTextBox.Size = new System.Drawing.Size(421, 23);
+            this.prefixTextBox.Size = new System.Drawing.Size(298, 23);
             this.prefixTextBox.TabIndex = 7;
             this.prefixTextBox.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
@@ -161,7 +155,6 @@
             this.loopBox.TabIndex = 11;
             this.loopBox.Text = "Loop Animation?";
             this.loopBox.UseVisualStyleBackColor = true;
-            this.loopBox.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // makeVTF
             // 
@@ -192,11 +185,22 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
-            // Form1
+            // pngToTgaButton
+            // 
+            this.pngToTgaButton.Location = new System.Drawing.Point(488, 64);
+            this.pngToTgaButton.Name = "pngToTgaButton";
+            this.pngToTgaButton.Size = new System.Drawing.Size(117, 23);
+            this.pngToTgaButton.TabIndex = 16;
+            this.pngToTgaButton.Text = "PNG to TGA";
+            this.pngToTgaButton.UseVisualStyleBackColor = true;
+            this.pngToTgaButton.Click += new System.EventHandler(this.button4_Click_1);
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(617, 214);
+            this.Controls.Add(this.pngToTgaButton);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.makeVTF);
@@ -214,8 +218,8 @@
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "Form1";
-            this.Text = "Animated Sprite Utility 1.0";
+            this.Name = "MainForm";
+            this.Text = "Animated Sprite Utility 1.1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -241,5 +245,6 @@
         private Button makeVTF;
         private Label statusLabel;
         private Button button3;
+        private Button pngToTgaButton;
     }
 }

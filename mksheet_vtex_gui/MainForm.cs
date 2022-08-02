@@ -23,11 +23,6 @@ namespace mksheet_vtex_gui
             frameTextBox.Text = frameFolder;
         }
 
-        private void folderBrowserDialog1_HelpRequest(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click_1(object sender, EventArgs e)
         {
             DialogResult dialogResult = folderBrowserDialog1.ShowDialog();
@@ -44,11 +39,6 @@ namespace mksheet_vtex_gui
             
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             tf2Folder = tf2FolderTextBox.Text;
@@ -56,11 +46,6 @@ namespace mksheet_vtex_gui
             //Save to settings
             Properties.Settings.Default.TeamFortressFolder = tf2Folder;
             Properties.Settings.Default.Save();
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -76,11 +61,6 @@ namespace mksheet_vtex_gui
 
                 frameTextBox.Text = frameFolder;
             }
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
@@ -171,16 +151,6 @@ namespace mksheet_vtex_gui
             Properties.Settings.Default.Save();
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button4_Click(object sender, EventArgs e)
         {
             statusLabel.Text = "Creating SHT and TGA files...";
@@ -255,6 +225,27 @@ namespace mksheet_vtex_gui
         {
             var vtexConfig = new VTEXConfig();
             vtexConfig.Show();
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            statusLabel.Text = "Converting PNG files with prefix " + prefixTextBox.Text+"...";
+            //Convert all png files with given prefix to tga
+            //First, find all png files with the appropriate prefix
+            string[] files = Directory.GetFiles(frameFolder);
+            TGASharpLib.TGA T;
+            foreach (string file in files) //Find all tga files beginning with provided prefix
+            {
+                if (Path.GetFileName(file).StartsWith(prefixTextBox.Text) && Path.GetExtension(file).ToLower().Equals(".png"))
+                {
+                    using (Bitmap clone = new Bitmap(file))
+                    using (Bitmap newbmp = clone.Clone(new Rectangle(0, 0, clone.Width, clone.Height), System.Drawing.Imaging.PixelFormat.Format32bppArgb))
+                        T = (TGASharpLib.TGA)newbmp;
+                    T.Save(Path.GetDirectoryName(file) + "\\" + Path.GetFileNameWithoutExtension(file) + ".tga");
+                }
+            }
+
+            statusLabel.Text = "Conversion complete.";
         }
     }
 }
