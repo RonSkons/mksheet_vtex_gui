@@ -46,5 +46,17 @@ namespace mksheet_vtex_gui.Properties {
                 this["FrameFolder"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string VTEXConfig {
+            get {
+                return ((string)(this["VTEXConfig"]));
+            }
+            set {
+                this["VTEXConfig"] = value;
+            }
+        }
     }
 }

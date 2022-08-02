@@ -2,7 +2,7 @@ using System.IO;
 
 namespace mksheet_vtex_gui
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         private string tf2Folder;
         private string frameFolder;
@@ -10,7 +10,7 @@ namespace mksheet_vtex_gui
         private string mksFile;
         private List<string> frames = new List<string>();
 
-        public Form1()
+        public MainForm()
         {
             tf2Folder = Properties.Settings.Default.TeamFortressFolder;
             frameFolder = Properties.Settings.Default.FrameFolder;
@@ -184,6 +184,7 @@ namespace mksheet_vtex_gui
         private void button4_Click(object sender, EventArgs e)
         {
             statusLabel.Text = "Creating SHT and TGA files...";
+            makeVTF.Enabled = false;
 
             //Copy/move all relevant files to /bin
             string tf2Bin = tf2Folder + "\\bin\\";
@@ -222,19 +223,38 @@ namespace mksheet_vtex_gui
 
             statusLabel.Text = "Creating VTF file...";
 
+            //Create a config file if there are saved vtex parameters
+            string vtexParams = Properties.Settings.Default.VTEXConfig;
+            if(vtexParams.Length > 0)
+            {
+                using FileStream fs = File.Create(tf2Folder + "\\tf\\materialsrc\\" + fileName + ".txt");
+                fs.Write(System.Text.Encoding.UTF8.GetBytes(vtexParams));
+            }
+
             //Set envars and run vtex
-            processStartInfo.Arguments = "/C set VGAME="+tf2Folder + "&set VPROJECT=" + tf2Folder + "\\tf" + "&\""+ tf2Bin + "vtex.exe\" \"" + tf2Folder + "\\tf\\materialsrc\\" + fileName + ".sht\"";
+            processStartInfo.Arguments = "/C set VGAME="+tf2Folder + "&set VPROJECT=" + tf2Folder + "\\tf" + "&\""+ tf2Bin + "vtex.exe\" -nopause -shader SpriteCard \"" + tf2Folder + "\\tf\\materialsrc\\" + fileName + ".sht\"";
             System.Diagnostics.Process vtex = System.Diagnostics.Process.Start(processStartInfo);
             vtex.WaitForExit();
 
             //Delete files that are no longer needed
             File.Delete(tf2Folder + "\\tf\\materialsrc\\" + fileName + ".sht");
             File.Delete(tf2Folder + "\\tf\\materialsrc\\" + fileName + ".tga");
+            if(vtexParams.Length > 0)
+            {
+                //Clean up config file if needed
+                File.Delete(tf2Folder + "\\tf\\materialsrc\\" + fileName + ".txt");
+            }
 
             //Move completed vtf to the original directory
             File.Move(tf2Folder + "\\tf\\materials\\" + fileName + ".vtf", frameFolder + "\\" + fileName + ".vtf");
 
             statusLabel.Text = "Done! " + fileName + ".vtf created.";
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            var vtexConfig = new VTEXConfig();
+            vtexConfig.Show();
         }
     }
 }

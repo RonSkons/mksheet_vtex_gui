@@ -1,6 +1,6 @@
 ﻿namespace mksheet_vtex_gui
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -44,6 +44,7 @@
             this.loopBox = new System.Windows.Forms.CheckBox();
             this.makeVTF = new System.Windows.Forms.Button();
             this.statusLabel = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // folderBrowserDialog1
@@ -167,7 +168,7 @@
             this.makeVTF.Enabled = false;
             this.makeVTF.Location = new System.Drawing.Point(12, 151);
             this.makeVTF.Name = "makeVTF";
-            this.makeVTF.Size = new System.Drawing.Size(593, 23);
+            this.makeVTF.Size = new System.Drawing.Size(470, 23);
             this.makeVTF.TabIndex = 12;
             this.makeVTF.Text = "Create VTF file";
             this.makeVTF.UseVisualStyleBackColor = true;
@@ -181,11 +182,22 @@
             this.statusLabel.Size = new System.Drawing.Size(0, 15);
             this.statusLabel.TabIndex = 14;
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(488, 151);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(117, 23);
+            this.button3.TabIndex = 15;
+            this.button3.Text = "VTEX Config";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(617, 214);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.makeVTF);
             this.Controls.Add(this.loopBox);
@@ -228,5 +240,6 @@
         private CheckBox loopBox;
         private Button makeVTF;
         private Label statusLabel;
+        private Button button3;
     }
 }
