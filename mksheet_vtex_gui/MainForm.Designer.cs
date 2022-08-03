@@ -44,8 +44,12 @@
             this.loopBox = new System.Windows.Forms.CheckBox();
             this.makeVTF = new System.Windows.Forms.Button();
             this.statusLabel = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.vtexCfgButton = new System.Windows.Forms.Button();
             this.pngToTgaButton = new System.Windows.Forms.Button();
+            this.blendFramesBox = new System.Windows.Forms.CheckBox();
+            this.depthBlendBox = new System.Windows.Forms.CheckBox();
+            this.additiveBox = new System.Windows.Forms.CheckBox();
+            this.makeVMT = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -142,18 +146,18 @@
             this.makeMKS.Name = "makeMKS";
             this.makeMKS.Size = new System.Drawing.Size(593, 23);
             this.makeMKS.TabIndex = 10;
-            this.makeMKS.Text = "Create MKS file";
+            this.makeMKS.Text = "Generate MKS file";
             this.makeMKS.UseVisualStyleBackColor = true;
-            this.makeMKS.Click += new System.EventHandler(this.button3_Click);
+            this.makeMKS.Click += new System.EventHandler(this.makeMKS_Click);
             // 
             // loopBox
             // 
             this.loopBox.AutoSize = true;
             this.loopBox.Location = new System.Drawing.Point(488, 97);
             this.loopBox.Name = "loopBox";
-            this.loopBox.Size = new System.Drawing.Size(117, 19);
+            this.loopBox.Size = new System.Drawing.Size(112, 19);
             this.loopBox.TabIndex = 11;
-            this.loopBox.Text = "Loop Animation?";
+            this.loopBox.Text = "Loop Animation";
             this.loopBox.UseVisualStyleBackColor = true;
             // 
             // makeVTF
@@ -163,27 +167,27 @@
             this.makeVTF.Name = "makeVTF";
             this.makeVTF.Size = new System.Drawing.Size(470, 23);
             this.makeVTF.TabIndex = 12;
-            this.makeVTF.Text = "Create VTF file";
+            this.makeVTF.Text = "Create VTF";
             this.makeVTF.UseVisualStyleBackColor = true;
-            this.makeVTF.Click += new System.EventHandler(this.button4_Click);
+            this.makeVTF.Click += new System.EventHandler(this.makeVTF_Click);
             // 
             // statusLabel
             // 
             this.statusLabel.AutoSize = true;
-            this.statusLabel.Location = new System.Drawing.Point(12, 190);
+            this.statusLabel.Location = new System.Drawing.Point(12, 206);
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Size = new System.Drawing.Size(0, 15);
             this.statusLabel.TabIndex = 14;
             // 
-            // button3
+            // vtexCfgButton
             // 
-            this.button3.Location = new System.Drawing.Point(488, 151);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(117, 23);
-            this.button3.TabIndex = 15;
-            this.button3.Text = "VTEX Config";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            this.vtexCfgButton.Location = new System.Drawing.Point(488, 151);
+            this.vtexCfgButton.Name = "vtexCfgButton";
+            this.vtexCfgButton.Size = new System.Drawing.Size(117, 23);
+            this.vtexCfgButton.TabIndex = 15;
+            this.vtexCfgButton.Text = "VTEX Config";
+            this.vtexCfgButton.UseVisualStyleBackColor = true;
+            this.vtexCfgButton.Click += new System.EventHandler(this.vtexCfgButton_Click);
             // 
             // pngToTgaButton
             // 
@@ -193,15 +197,61 @@
             this.pngToTgaButton.TabIndex = 16;
             this.pngToTgaButton.Text = "PNG to TGA";
             this.pngToTgaButton.UseVisualStyleBackColor = true;
-            this.pngToTgaButton.Click += new System.EventHandler(this.button4_Click_1);
+            this.pngToTgaButton.Click += new System.EventHandler(this.pngToTgaButton_Click);
+            // 
+            // blendFramesBox
+            // 
+            this.blendFramesBox.AutoSize = true;
+            this.blendFramesBox.Location = new System.Drawing.Point(12, 184);
+            this.blendFramesBox.Name = "blendFramesBox";
+            this.blendFramesBox.Size = new System.Drawing.Size(97, 19);
+            this.blendFramesBox.TabIndex = 17;
+            this.blendFramesBox.Text = "Blend Frames";
+            this.blendFramesBox.UseVisualStyleBackColor = true;
+            // 
+            // depthBlendBox
+            // 
+            this.depthBlendBox.AutoSize = true;
+            this.depthBlendBox.Checked = true;
+            this.depthBlendBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.depthBlendBox.Location = new System.Drawing.Point(115, 184);
+            this.depthBlendBox.Name = "depthBlendBox";
+            this.depthBlendBox.Size = new System.Drawing.Size(88, 19);
+            this.depthBlendBox.TabIndex = 18;
+            this.depthBlendBox.Text = "Depthblend";
+            this.depthBlendBox.UseVisualStyleBackColor = true;
+            // 
+            // additiveBox
+            // 
+            this.additiveBox.AutoSize = true;
+            this.additiveBox.Location = new System.Drawing.Point(209, 184);
+            this.additiveBox.Name = "additiveBox";
+            this.additiveBox.Size = new System.Drawing.Size(70, 19);
+            this.additiveBox.TabIndex = 19;
+            this.additiveBox.Text = "Additive";
+            this.additiveBox.UseVisualStyleBackColor = true;
+            // 
+            // makeVMT
+            // 
+            this.makeVMT.Location = new System.Drawing.Point(285, 180);
+            this.makeVMT.Name = "makeVMT";
+            this.makeVMT.Size = new System.Drawing.Size(320, 23);
+            this.makeVMT.TabIndex = 20;
+            this.makeVMT.Text = "Generate VMT";
+            this.makeVMT.UseVisualStyleBackColor = true;
+            this.makeVMT.Click += new System.EventHandler(this.makeVMT_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(617, 214);
+            this.ClientSize = new System.Drawing.Size(617, 232);
+            this.Controls.Add(this.makeVMT);
+            this.Controls.Add(this.additiveBox);
+            this.Controls.Add(this.depthBlendBox);
+            this.Controls.Add(this.blendFramesBox);
             this.Controls.Add(this.pngToTgaButton);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.vtexCfgButton);
             this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.makeVTF);
             this.Controls.Add(this.loopBox);
@@ -219,7 +269,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "Animated Sprite Utility 1.1";
+            this.Text = "Animated Sprite Utility 1.2";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -244,7 +294,11 @@
         private CheckBox loopBox;
         private Button makeVTF;
         private Label statusLabel;
-        private Button button3;
+        private Button vtexCfgButton;
         private Button pngToTgaButton;
+        private CheckBox blendFramesBox;
+        private CheckBox depthBlendBox;
+        private CheckBox additiveBox;
+        private Button makeVMT;
     }
 }

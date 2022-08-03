@@ -83,7 +83,7 @@ namespace mksheet_vtex_gui
             nameTextBox.SelectionStart = nameTextBox.Text.Length;
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void makeMKS_Click(object sender, EventArgs e)
         {
             fileName = nameTextBox.Text;
 
@@ -151,7 +151,7 @@ namespace mksheet_vtex_gui
             Properties.Settings.Default.Save();
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void makeVTF_Click(object sender, EventArgs e)
         {
             statusLabel.Text = "Creating SHT and TGA files...";
             makeVTF.Enabled = false;
@@ -164,7 +164,7 @@ namespace mksheet_vtex_gui
             }
             File.Move(mksFile, tf2Bin + fileName+".mks");
 
-            //Create sht and tga
+            //Create SHT and TGA
             var processStartInfo = new System.Diagnostics.ProcessStartInfo();
             processStartInfo.WorkingDirectory = tf2Folder+"\\bin";
             processStartInfo.FileName = "cmd.exe";
@@ -202,7 +202,7 @@ namespace mksheet_vtex_gui
             }
 
             //Set envars and run vtex
-            processStartInfo.Arguments = "/C set VGAME="+tf2Folder + "&set VPROJECT=" + tf2Folder + "\\tf" + "&\""+ tf2Bin + "vtex.exe\" -nopause -shader SpriteCard \"" + tf2Folder + "\\tf\\materialsrc\\" + fileName + ".sht\"";
+            processStartInfo.Arguments = "/C set VGAME="+tf2Folder + "&set VPROJECT=" + tf2Folder + "\\tf" + "&\""+ tf2Bin + "vtex.exe\" -nopause \"" + tf2Folder + "\\tf\\materialsrc\\" + fileName + ".sht\"";
             System.Diagnostics.Process vtex = System.Diagnostics.Process.Start(processStartInfo);
             vtex.WaitForExit();
 
@@ -221,13 +221,13 @@ namespace mksheet_vtex_gui
             statusLabel.Text = "Done! " + fileName + ".vtf created.";
         }
 
-        private void button3_Click_1(object sender, EventArgs e)
+        private void vtexCfgButton_Click(object sender, EventArgs e)
         {
             var vtexConfig = new VTEXConfig();
             vtexConfig.Show();
         }
 
-        private void button4_Click_1(object sender, EventArgs e)
+        private void pngToTgaButton_Click(object sender, EventArgs e)
         {
             statusLabel.Text = "Converting PNG files with prefix " + prefixTextBox.Text+"...";
             //Convert all png files with given prefix to tga
@@ -238,14 +238,32 @@ namespace mksheet_vtex_gui
             {
                 if (Path.GetFileName(file).StartsWith(prefixTextBox.Text) && Path.GetExtension(file).ToLower().Equals(".png"))
                 {
+                    //From https://stackoverflow.com/questions/52682630/c-sharp-how-to-convert-png-jpg-to-tga-32bit
                     using (Bitmap clone = new Bitmap(file))
                     using (Bitmap newbmp = clone.Clone(new Rectangle(0, 0, clone.Width, clone.Height), System.Drawing.Imaging.PixelFormat.Format32bppArgb))
-                        T = (TGASharpLib.TGA)newbmp;
+                    T = (TGASharpLib.TGA)newbmp;
                     T.Save(Path.GetDirectoryName(file) + "\\" + Path.GetFileNameWithoutExtension(file) + ".tga");
                 }
             }
 
             statusLabel.Text = "Conversion complete.";
+        }
+
+        private void makeVMT_Click(object sender, EventArgs e)
+        {
+            statusLabel.Text = "Generating VMT file...";
+            //Generate a VMT file
+            fileName = nameTextBox.Text;
+
+            using FileStream fs = File.Create(frameFolder+"\\"+fileName+".vmt");
+            //Generate VMT contents
+            fs.Write(System.Text.Encoding.UTF8.GetBytes("\"SpriteCard\"\r\n{\r\n"));
+            fs.Write(System.Text.Encoding.UTF8.GetBytes("\t\"$basetexture\" \""+fileName+"\"\r\n"));
+            fs.Write(System.Text.Encoding.UTF8.GetBytes("\t\"$blendframes\" " + (blendFramesBox.Checked ? "1" : "0") + "\r\n"));
+            fs.Write(System.Text.Encoding.UTF8.GetBytes("\t\"$depthblend\" " + (depthBlendBox.Checked ? "1" : "0") + "\r\n"));
+            fs.Write(System.Text.Encoding.UTF8.GetBytes("\t\"$additive\" " + (additiveBox.Checked ? "1" : "0") + "\r\n}"));
+
+            statusLabel.Text = "Done! " + fileName + ".vmt created.";
         }
     }
 }
