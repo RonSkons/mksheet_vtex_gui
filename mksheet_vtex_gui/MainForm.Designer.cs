@@ -50,11 +50,12 @@
             this.depthBlendBox = new System.Windows.Forms.CheckBox();
             this.additiveBox = new System.Windows.Forms.CheckBox();
             this.makeVMT = new System.Windows.Forms.Button();
+            this.sequenceSplitBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(574, 6);
+            this.button1.Location = new System.Drawing.Point(618, 6);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(31, 23);
             this.button1.TabIndex = 0;
@@ -75,7 +76,7 @@
             // 
             this.tf2FolderTextBox.Location = new System.Drawing.Point(184, 6);
             this.tf2FolderTextBox.Name = "tf2FolderTextBox";
-            this.tf2FolderTextBox.Size = new System.Drawing.Size(384, 23);
+            this.tf2FolderTextBox.Size = new System.Drawing.Size(428, 23);
             this.tf2FolderTextBox.TabIndex = 2;
             this.tf2FolderTextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -92,13 +93,13 @@
             // 
             this.frameTextBox.Location = new System.Drawing.Point(184, 35);
             this.frameTextBox.Name = "frameTextBox";
-            this.frameTextBox.Size = new System.Drawing.Size(384, 23);
+            this.frameTextBox.Size = new System.Drawing.Size(428, 23);
             this.frameTextBox.TabIndex = 4;
             this.frameTextBox.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(574, 35);
+            this.button2.Location = new System.Drawing.Point(618, 35);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(31, 23);
             this.button2.TabIndex = 5;
@@ -136,7 +137,7 @@
             // 
             this.nameTextBox.Location = new System.Drawing.Point(184, 93);
             this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(298, 23);
+            this.nameTextBox.Size = new System.Drawing.Size(208, 23);
             this.nameTextBox.TabIndex = 9;
             this.nameTextBox.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
@@ -144,7 +145,7 @@
             // 
             this.makeMKS.Location = new System.Drawing.Point(12, 122);
             this.makeMKS.Name = "makeMKS";
-            this.makeMKS.Size = new System.Drawing.Size(593, 23);
+            this.makeMKS.Size = new System.Drawing.Size(637, 23);
             this.makeMKS.TabIndex = 10;
             this.makeMKS.Text = "Generate MKS file";
             this.makeMKS.UseVisualStyleBackColor = true;
@@ -153,7 +154,7 @@
             // loopBox
             // 
             this.loopBox.AutoSize = true;
-            this.loopBox.Location = new System.Drawing.Point(488, 97);
+            this.loopBox.Location = new System.Drawing.Point(537, 97);
             this.loopBox.Name = "loopBox";
             this.loopBox.Size = new System.Drawing.Size(112, 19);
             this.loopBox.TabIndex = 11;
@@ -183,7 +184,7 @@
             // 
             this.vtexCfgButton.Location = new System.Drawing.Point(488, 151);
             this.vtexCfgButton.Name = "vtexCfgButton";
-            this.vtexCfgButton.Size = new System.Drawing.Size(117, 23);
+            this.vtexCfgButton.Size = new System.Drawing.Size(161, 23);
             this.vtexCfgButton.TabIndex = 15;
             this.vtexCfgButton.Text = "VTEX Config";
             this.vtexCfgButton.UseVisualStyleBackColor = true;
@@ -193,9 +194,9 @@
             // 
             this.pngToTgaButton.Location = new System.Drawing.Point(488, 64);
             this.pngToTgaButton.Name = "pngToTgaButton";
-            this.pngToTgaButton.Size = new System.Drawing.Size(117, 23);
+            this.pngToTgaButton.Size = new System.Drawing.Size(161, 23);
             this.pngToTgaButton.TabIndex = 16;
-            this.pngToTgaButton.Text = "PNG to TGA";
+            this.pngToTgaButton.Text = "Batch convert PNG to TGA";
             this.pngToTgaButton.UseVisualStyleBackColor = true;
             this.pngToTgaButton.Click += new System.EventHandler(this.pngToTgaButton_Click);
             // 
@@ -235,17 +236,28 @@
             // 
             this.makeVMT.Location = new System.Drawing.Point(285, 180);
             this.makeVMT.Name = "makeVMT";
-            this.makeVMT.Size = new System.Drawing.Size(320, 23);
+            this.makeVMT.Size = new System.Drawing.Size(364, 23);
             this.makeVMT.TabIndex = 20;
             this.makeVMT.Text = "Generate VMT";
             this.makeVMT.UseVisualStyleBackColor = true;
             this.makeVMT.Click += new System.EventHandler(this.makeVMT_Click);
             // 
+            // sequenceSplitBox
+            // 
+            this.sequenceSplitBox.AutoSize = true;
+            this.sequenceSplitBox.Location = new System.Drawing.Point(398, 97);
+            this.sequenceSplitBox.Name = "sequenceSplitBox";
+            this.sequenceSplitBox.Size = new System.Drawing.Size(129, 19);
+            this.sequenceSplitBox.TabIndex = 21;
+            this.sequenceSplitBox.Text = "Multiple Sequences";
+            this.sequenceSplitBox.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(617, 232);
+            this.ClientSize = new System.Drawing.Size(661, 232);
+            this.Controls.Add(this.sequenceSplitBox);
             this.Controls.Add(this.makeVMT);
             this.Controls.Add(this.additiveBox);
             this.Controls.Add(this.depthBlendBox);
@@ -269,7 +281,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Text = "Animated Sprite Utility 1.2";
+            this.Text = "Animated Sprite Utility 1.2.1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -300,5 +312,6 @@
         private CheckBox depthBlendBox;
         private CheckBox additiveBox;
         private Button makeVMT;
+        private CheckBox sequenceSplitBox;
     }
 }

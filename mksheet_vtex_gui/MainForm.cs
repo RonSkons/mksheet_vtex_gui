@@ -125,18 +125,33 @@ namespace mksheet_vtex_gui
 
             frames.Sort(); //Sort frames. Assumption is that frames are provided with ascending numerical suffixes.
 
+            bool splitSequences = sequenceSplitBox.Checked; //If checked, each frame will get its own sequence.
+
             //Create mks file
             mksFile = frameFolder + "\\" + fileName + ".mks";
             using FileStream fs = File.Create(mksFile);
-            fs.Write(System.Text.Encoding.UTF8.GetBytes("sequence 0"));
-            if (loopBox.Checked)
+            string mks = "";
+            //Iterate through frames
+            for(int i = 0; i < frames.Count; i++)
             {
-                fs.Write(System.Text.Encoding.UTF8.GetBytes("\r\nLOOP"));
+                string frame = frames[i];
+                if(i == 0) //Always create sequence 0
+                {
+                    mks += "sequence 0";
+                }else if (splitSequences) //If splitSequences is true, create a sequence for each frame.
+                {
+                    mks += "\r\n\r\nsequence " + i.ToString();
+                }
+
+                if (loopBox.Checked)
+                {
+                    mks += "\r\nLOOP";
+                }
+
+                mks += "\r\nframe " + frame + " 1";
             }
-            foreach (string frame in frames)
-            {
-                fs.Write(System.Text.Encoding.UTF8.GetBytes("\r\nframe "+frame+" 1"));
-            }
+
+            fs.Write(System.Text.Encoding.UTF8.GetBytes(mks)); //Write to file
 
             //Enable "Create VTF File" button
             makeVTF.Enabled = true;
