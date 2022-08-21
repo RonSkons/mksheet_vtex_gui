@@ -114,6 +114,11 @@ namespace mksheet_vtex_gui
                 if (Path.GetFileName(file).StartsWith(prefixTextBox.Text) && Path.GetExtension(file).ToLower().Equals(".tga"))
                 {
                     frames.Add(Path.GetFileName(file));
+                    if (Path.GetFileName(file).Contains(" "))
+                    {
+                        MessageBox.Show("Error: mksheet.exe breaks when frame names contain spaces. Rename and try again.");
+                        return;
+                    }
                 }
             }
             
@@ -135,6 +140,7 @@ namespace mksheet_vtex_gui
             for(int i = 0; i < frames.Count; i++)
             {
                 string frame = frames[i];
+
                 if(i == 0) //Always create sequence 0
                 {
                     mks += "sequence 0";
@@ -231,7 +237,13 @@ namespace mksheet_vtex_gui
             }
 
             //Move completed vtf to the original directory
-            File.Move(tf2Folder + "\\tf\\materials\\" + fileName + ".vtf", frameFolder + "\\" + fileName + ".vtf");
+            string vtfLocation = frameFolder + "\\" + fileName + ".vtf";
+
+            if (File.Exists(vtfLocation)) //If the file already exists, delete it
+            {
+                File.Delete(vtfLocation);
+            }
+            File.Move(tf2Folder + "\\tf\\materials\\" + fileName + ".vtf", vtfLocation);
 
             statusLabel.Text = "Done! " + fileName + ".vtf created.";
         }
