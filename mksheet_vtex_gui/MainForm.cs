@@ -144,14 +144,18 @@ namespace mksheet_vtex_gui
                 if(i == 0) //Always create sequence 0
                 {
                     mks += "sequence 0";
-                }else if (splitSequences) //If splitSequences is true, create a sequence for each frame.
+                    if (loopBox.Checked)
+                    {
+                        mks += "\r\nLOOP";
+                    }
+                }
+                else if (splitSequences) //If splitSequences is true, create a sequence for each frame.
                 {
                     mks += "\r\n\r\nsequence " + i.ToString();
-                }
-
-                if (loopBox.Checked)
-                {
-                    mks += "\r\nLOOP";
+                    if (loopBox.Checked)
+                    {
+                        mks += "\r\nLOOP";
+                    }
                 }
 
                 mks += "\r\nframe " + frame + " 1";
