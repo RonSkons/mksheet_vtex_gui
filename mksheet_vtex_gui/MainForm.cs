@@ -122,7 +122,7 @@ namespace mksheet_vtex_gui
                 }
             }
             
-            if(frames.Count == 0)
+            if (frames.Count == 0)
             {
                 MessageBox.Show("No frames with prefix " + prefixTextBox.Text + " found.");
                 return;
@@ -136,12 +136,13 @@ namespace mksheet_vtex_gui
             mksFile = frameFolder + "\\" + fileName + ".mks";
             using FileStream fs = File.Create(mksFile);
             string mks = "";
+            
             //Iterate through frames
-            for(int i = 0; i < frames.Count; i++)
+            for (int i = 0; i < frames.Count; i++)
             {
                 string frame = frames[i];
 
-                if(i == 0) //Always create sequence 0
+                if (i == 0) //Always create sequence 0
                 {
                     mks += "sequence 0";
                     if (loopBox.Checked)
@@ -193,7 +194,7 @@ namespace mksheet_vtex_gui
             var processStartInfo = new System.Diagnostics.ProcessStartInfo();
             processStartInfo.WorkingDirectory = tf2Folder+"\\bin";
             processStartInfo.FileName = "cmd.exe";
-            processStartInfo.Arguments = "/C mksheet.exe "+fileName+".mks";
+            processStartInfo.Arguments = "/C mksheet.exe " + fileName+".mks";
             System.Diagnostics.Process mksheet = System.Diagnostics.Process.Start(processStartInfo);
             mksheet.WaitForExit();
 
